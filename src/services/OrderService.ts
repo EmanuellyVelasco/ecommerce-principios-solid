@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { ProductFactory } from "../domain/ProductFactory";
 import logger from '../lib/logger';
 import { PaymentFactory } from '../payments/PaymentFactory';

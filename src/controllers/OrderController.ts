@@ -1,8 +1,11 @@
+import dotenv from "dotenv"
 import { Request, Response } from 'express';
 import logger from '../lib/logger';
 import {  OrderService } from '../services/OrderService';
 import { PrismaOrderRepository } from '../repositories/PrismaOrderRepository';
 import { PrismaProductRepository } from '../repositories/PrismaProductRepository';
+
+dotenv.config();
 
 const orderRepository = new PrismaOrderRepository();
 const productRepository = new PrismaProductRepository();
