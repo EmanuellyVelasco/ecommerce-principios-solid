@@ -1,5 +1,5 @@
 import { injectable } from "inversify";
-import logger from '../logger'; // seu winston configurado
+import logger from '../logger';
 import { ILogger } from '../../domain/interfaces/ILogger';
 
 @injectable()

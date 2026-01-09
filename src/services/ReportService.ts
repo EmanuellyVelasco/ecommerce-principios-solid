@@ -1,4 +1,3 @@
-// src/domain/services/ReportService.ts
 import { injectable, inject } from "inversify";
 import { faker } from "@faker-js/faker";
 import { IReportService } from "../domain/interfaces/IReportService";
@@ -8,7 +7,7 @@ import { TYPES } from "../infra/types";
 
 export class InvalidReportSizeError extends Error {
     constructor() {
-        super("InvalidReportSizeError: Máximo de 10 registros.");
+        super("Número inválido de registros.");
         this.name = "InvalidReportSizeError";
     }
 }
@@ -28,7 +27,6 @@ export class ReportService implements IReportService {
 
         this.logger.info(`Iniciando geração de relatório para: ${email}`);
 
-        // 2. Gerar n registros fictícios
         const data = Array.from({ length: n }, () => ({
             nome: faker.person.fullName(),
             cidade: faker.location.city(),
@@ -36,10 +34,8 @@ export class ReportService implements IReportService {
 
         const reportContent = JSON.stringify(data, null, 2);
 
-        // 4. Enviar o relatório por e-mail
-        await this.mailer.send(email, "Relatório de Dados Fictícios", reportContent);
+        await this.mailer.send(email, "Enviando Relatório de Dados", reportContent);
 
-        // 5. Logar o sucesso da operação
         this.logger.info("Relatório gerado e enviado com sucesso.");
     }
 }
