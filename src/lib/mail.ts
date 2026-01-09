@@ -6,6 +6,19 @@ let transporter: nodemailer.Transporter | null = null;
 export const getMailClient = async () => {
   if (transporter) return transporter;
 
+  if (process.env.APP_ENV === "prod") {
+    transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.MAIL_USER,
+        pass: process.env.MAIL_PASS,
+      }
+    });
+
+    logger.info("Mailer configurado");
+    return transporter;
+  }
+
   // Cria uma conta de teste no Ethereal automaticamente
   const testAccount = await nodemailer.createTestAccount();
 

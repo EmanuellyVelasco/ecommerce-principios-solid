@@ -1,6 +1,6 @@
 import { injectable } from "inversify";
-import logger from '../logger';
 import { ILogger } from '../../domain/interfaces/ILogger';
+import logger from "../../lib/logger";
 
 @injectable()
 export class LoggerAdapter implements ILogger {
